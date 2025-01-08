@@ -1,4 +1,4 @@
-# ![Digital Futures Academy](https://github.com/digital-futures-academy/DataScienceMasterResources/blob/main/Resources/datascience-notebook-header.png?raw=true)
+# ![Digital Futures Academy](https://github.com/digital-futures-academy/DataScienceMasterResources/blob/main/Resources/datascience-notebook-header.png?raw=`true`)
 
 ## ETL Pipeline Project Walkthrough
 
@@ -19,49 +19,63 @@
 |                                                      | Scientists need the cleaned dataset stored in a SQL table for analysis.                   |
 |                                                      | Scientists need to be able to reset and update the data for repeat or future analysis     |
 
-Given these epics and their requirements, create user stories for each epic.  There is a hint as to how many stories are needed and the stakeholders involved in it.
-
 ### User Stories
 
 #### Epic 1: Data Availability, Quality, Trust and Access
 
 ```txt
+USER STORY 1
+
 As a Data Analyst,  
-I want ,  
-So that I can 
+I want access to a single, clean, and accurate dataset combining customer demographics and transaction data,  
+So that I can analyze customer behaviour without worrying about data inconsistencies and can rely on it for analysis without manual checks.
 ```
+
+**NOTE**: There are 2 User Requirements in Epic 1 but only a single User Stories is provided.  This is because the User Requirements are closely related and can be combined into a single User Story.
 
 #### Epic 2: Customer Insights
 
 ```txt
+USER STORY 2
+
 As a Data Analyst,  
-I want ,  
-So that I can 
+I want to know how much each customer has spent and their average transaction value,  
+So that I can identify high-value customers for further analysis
+
+USER STORY 3
 
 As a Business Stakeholder,  
-I want ,  
-So that 
+I want to identify high-value customers who have spent more than $500,  
+So that we can target them for loyalty rewards
 ```
 
 #### Epic 3: Demographic Trends
 
 ```txt
+USER STORY 4
+
 As a Business Stakeholder,  
-I want ,  
-So that 
+I want to analyse demographic trends, such as customer age and country, among high-value customers,  
+So that I can tailor our marketing campaigns to reach them effectively
 ```
 
 #### Epic 4: Data Storage and Access
 
 ```txt
+USER STORY 5
+
 As a Data Scientist,  
-I want ,  
-So that .
+I want the cleaned and enriched data to be stored in a SQL table,  
+So that I can query it directly for advanced analysis
+
+USER STORY 6
 
 As a Data Scientist,
-I want ,
-So that 
+I want to be able to refresh the data set, perhaps with new data,
+So that I can keep my analysis up to date
 ```
+
+**Note**: Although there are 3 requirements here, they are combined into 2 user stories.  This is because the requirements are closely related and can be combined.
 
 ---
 
@@ -81,7 +95,7 @@ For each of the user stories identified, complete the missing information in Acc
   - ***SQL***:
     - **Query Performance**: Queries should execute in less than 2 seconds for typical operations.
     - **Readability and Maintainability**: Queries should be formatted for readability with consistent indentation, meaningful aliases, and comments.
-    - **Use of Best Practices**: Follow best practices such as avoiding `SELECT *`, using `JOINs` appropriately, and ensuring proper *indexing*.
+    - **Use of Best Practices**: Follow best practices such as avoiding `SELECT *`, using `JOIN`s appropriately, and ensuring proper *indexing*.
     - **Linting**: SQL code should be linted for syntax errors and compliance with best practices.
   - ***Python***:
     - **PEP 8 Compliance**: Code should follow PEP 8 guidelines. Use a linter (e.g., flake8) to ensure compliance.
@@ -91,7 +105,7 @@ For each of the user stories identified, complete the missing information in Acc
   - ***Pandas***:
     - **Efficient Data Manipulation**: Use vectorised operations instead of loops for data manipulation.
     - **Memory Usage**: Use appropriate data types and avoid loading unnecessary data into memory.
-    - D**ata Validation**: Check for missing values, data types, and data ranges before performing operation
+    - **Data Validation**: Check for missing values, data types, and data ranges before performing operation
 - [ ] Code is reviewed and approved by at least one other team member.
 - [ ] Code is free of critical and high-severity bugs.
 
@@ -178,9 +192,7 @@ For each of the user stories identified, complete the missing information in Acc
 
 ---
 
-### Activity 1.2 - Complete Acceptance Criteria
-
-Certain metrics for each user story's Acceptance Criteria have been identified.  Complete the missing information (signified by ***...***) for each user story.
+### Activity 1.2 - Define Acceptance Criteria
 
 #### For Epic 1: Data Availability, Quality, and Trust
 
@@ -193,23 +205,22 @@ So that I can analyse customer behaviour without worrying about data inconsisten
 ***Acceptance Criteria***
 
 - **Data Extraction**
-  - [ ] Given the database contains  ***...*** rows with  ***...*** fields, when the data is extracted, then it should complete in less than  ***...*** minute.
-  - [ ] Given the CSV file contains  ***...*** rows with  ***...*** columns, when the data is extracted, then it should complete in less than  ***...*** seconds.
+  - [ ] Given the database contains 10,500 rows with 4 fields, when the data is extracted, then it should complete in less than 1 minute.
+  - [ ] Given the CSV file contains 5,200 rows with 5 columns, when the data is extracted, then it should complete in less than 30 seconds.
 - **Data Cleaning**
-  - [ ] Given the extracted data, when duplicates are removed, ***...***
-  - [ ] Given the extracted data, when missing values are handled, then ***...*** of missing should be resolved.
-  - [ ] Given the extracted data, when invalid values are handled, then ***...*** of invalid fields should be resolved.
-  - [ ] Given the extracted data, when data cleaning is performed,  ***...***
+  - [ ] Given the extracted data, when duplicates are removed, then 100% of duplicates should be removed.
+  - [ ] Given the extracted data, when missing values are handled, then 100% of missing should be resolved.
+  - [ ] Given the extracted data, when invalid values are handled, then 100% of invalid fields should be resolved.
+  - [ ] Given the extracted data, when data cleaning is performed, then it should complete in less than 1 second per 1,000 rows.
 - **Data Transformation**
-  - [ ] Given the cleaned data, when the customer demographics dataset (CSV) and transaction dataset (database) are merged, then the merge should be performed correctly using the  ***...***` field as the key.
-  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the  ***...*** field should be accurate and reflect the sum of all amount values for each  ***...***.
-  - [ ] Given the cleaned data, when filtering for active customers, then only customers with  ***...*** set to  ***...*** should be included.
+  - [ ] Given the cleaned data, when the customer demographics dataset (CSV) and transaction dataset (database) are merged, then the merge should be performed correctly using the `customer_id` field as the key.
+  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the `total_spent` field should be accurate and reflect the sum of all amount values for each `customer_id`.
+  - [ ] Given the cleaned data, when filtering for active customers, then only customers with `is_active` set to `True` should be included.
 - **Data Quality**
   - [ ] Given the transformed dataset, when data validation is performed, then 99% of records should be accurate.
   - [ ] Given the transformed dataset, when data validation is performed, then 100% of expected columns and rows should be present.
   - [ ] Given the transformed dataset, when data validation is performed, then 100% of records should have consistent formats and values.
   - [ ] Given the transformed dataset, when data validation is performed, then 100% of records should maintain integrity constraints.
-  - [ ] Given the transformed dataset, when data validation is performed, then the error rate should be less than 1%.
   - [ ] Given the transformed dataset, when data validation is performed, then it should complete in less than 1 second per 1,000 rows.
 - **Documentation**
   - [ ] Code should be documented with clear and concise comments.
@@ -233,9 +244,9 @@ So that I can identify high-value customers for further analysis
 ***Acceptance Criteria***
 
 - **Data Transformation**
-  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the  ***...*** field should be accurate and reflect the sum of all amount values for each  ***...***.
-  - [ ] Given the cleaned data, when calculating the average transaction value for each customer, then the  ***...*** field should be accurate and reflect the average of all amount values for each  ***...***.
-  - [ ] Given the cleaned data, when filtering for high-value customers, then only customers with a  ***...*** greater than  ***...*** should be included.
+  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the `total_spent` field should be accurate and reflect the sum of all amount values for each `customer_id`.
+  - [ ] Given the cleaned data, when calculating the average transaction value for each customer, then the `avg_transaction_value` field should be accurate and reflect the average of all amount values for each `customer_id`.
+  - [ ] Given the cleaned data, when filtering for high-value customers, then only customers with a `total_spent` greater than **$500** should be included.
 - **Data Quality**
   - [ ] Given the transformed dataset, when data validation is performed, then 99% of records should be accurate.
   - [ ] Given the transformed dataset, when data validation is performed, then 100% of expected columns and rows should be present.
@@ -260,8 +271,8 @@ So that we can target them for loyalty rewards
 ***Acceptance Criteria***
 
 - **Data Transformation**
-  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the  ***...*** field should be accurate and reflect the sum of all  ***...*** values for each  ***...***.
-  - [ ] Given the cleaned data, when filtering for high-value customers, then only customers with a  ***...*** greater than  ***...*** should be included.
+  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the ``total_spent`` field should be accurate and reflect the sum of all `amount` values for each `customer_id`.
+  - [ ] Given the cleaned data, when filtering for high-value customers, then only customers with a ``total_spent`` greater than **$500** should be included.
 - **Data Quality**
   - [ ] Given the transformed dataset, when data validation is performed, then 99% of records should be accurate.
   - [ ] Given the transformed dataset, when data validation is performed, then 100% of expected columns and rows should be present.
@@ -290,17 +301,16 @@ So that I can tailor our marketing campaigns to reach them effectively
 ***Acceptance Criteria***
 
 - **Data Transformation**
-  - [ ] Given the cleaned data, when identifying high-value customers, then only customers with a  ***...*** greater than  ***...*** should be included.
-  - [ ] Given the high-value customers, when analysing demographic trends, then the analysis should include  ***...*** and  ***...*** fields.
+  - [ ] Given the cleaned data, when identifying high-value customers, then only customers with a `total_spent` greater than **$500** should be included.
+  - [ ] Given the high-value customers, when analysing demographic trends, then the analysis should include `age` and `country` fields.
 - **Data Analysis**
-  - [ ] Given the high-value customers, when calculating demographic trends, then the average  ***...*** and distribution by  ***...*** should be accurately calculated.
-  - [ ] Given the high-value customers, when generating demographic reports, then the reports should include visualizations (e.g., charts, graphs) of  ***...*** and  ***...*** distributions.
+  - [ ] Given the high-value customers, when calculating demographic trends, then the average `age` and distribution by `country` should be accurately calculated.
+  - [ ] Given the high-value customers, when generating demographic reports, then the reports should include visualizations (e.g., charts, graphs) of age and `country` distributions.
 - **Data Quality**
   - [ ] Given the demographic analysis, when data validation is performed, then 99% of records should be accurate.
   - [ ] Given the demographic analysis, when data validation is performed, then 100% of expected columns and rows should be present.
   - [ ] Given the demographic analysis, when data validation is performed, then 100% of records should have consistent formats and values.
   - [ ] Given the demographic analysis, when data validation is performed, then 100% of records should maintain integrity constraints.
-  - [ ] Given the demographic analysis, when data validation is performed, then the error rate should be less than 1%.
 - **Documentation**
   - [ ] Code should be documented with clear and concise comments.
   - [ ] User-facing documentation should be updated to reflect new or changed functionality.
@@ -323,7 +333,7 @@ So that I can query it directly for advanced analysis
 ***Acceptance Criteria***
 
 - **Data Loading**
-  - [ ] Given the cleaned and enriched data, when the data is loaded into the target SQL table, then it should complete in less than  ***...*** seconds per  ***...*** rows.
+  - [ ] Given the cleaned and enriched data, when the data is loaded into the target SQL table, then it should complete in less than 5 seconds per 10,000 rows.
   - [ ] Given the cleaned and enriched data, when the data is loaded into the target SQL table, then the row counts should match expectations.
 - **Data Quality**
   - [ ] Given the loaded data, when data validation is performed, then 99% of records should be accurate.
@@ -331,7 +341,6 @@ So that I can query it directly for advanced analysis
   - [ ] Given the loaded data, when data validation is performed, then 100% of records should have consistent formats and values.
   - [ ] Given the loaded data, when data validation is performed, then 100% of records should maintain integrity constraints.
   - [ ] Given the loaded data, when data validation is performed, then the error rate should be less than 1%.
-  - [ ] Given the loaded data, when data validation is performed, then it should complete in less than 1 second per 1,000 rows.
 - **Performance**
   - [ ] Given the entire ETL process, when it is executed, then it should complete within 30 minutes for a full dataset.
   - [ ] Given the entire ETL process, when it is executed, then no significant performance regressions should be introduced.
@@ -354,19 +363,19 @@ So that I can keep my analysis up to date
 
 - **Data Extraction**
   - [ ] Given new data is available in the source systems, when the ETL pipeline is executed, then the new data should be extracted successfully.
-  - [ ] Given the database contains new rows, when the data is extracted, then it should complete in less than ***...*** minute for ***...***rows with ***...*** fields.
-  - [ ] Given the CSV file contains new rows, when the data is extracted, then it should complete in less than ***...*** seconds for ***...*** rows with ***...*** columns.
+  - [ ] Given the database contains new rows, when the data is extracted, then it should complete in less than 1 minute for 10,500 rows with 4 fields.
+  - [ ] Given the CSV file contains new rows, when the data is extracted, then it should complete in less than 30 seconds for 5,200 rows with 5 columns.
 - **Data Cleaning**
-  - [ ] Given the extracted data, when duplicates are removed, then ***...***% of duplicates should be removed.
-  - [ ] Given the extracted data, when missing or invalid values are handled, then ***...***% of missing or invalid fields should be resolved.
-  - [ ] Given the extracted data, when data cleaning is performed, then it should complete in less than ***...*** second per ***...*** rows.
+  - [ ] Given the extracted data, when duplicates are removed, then 100% of duplicates should be removed.
+  - [ ] Given the extracted data, when missing or invalid values are handled, then 100% of missing or invalid fields should be resolved.
+  - [ ] Given the extracted data, when data cleaning is performed, then it should complete in less than 1 second per 1,000 rows.
 - **Data Transformation**
-  - [ ] Given the cleaned data, when the customer demographics dataset (CSV) and transaction dataset (database) are merged, then the merge should be performed correctly using the ***...*** field as the key.
-  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the ***...*** field should be accurate and reflect the sum of all ***...*** values for each ***...***.
-  - [ ] Given the cleaned data, when calculating the average transaction value for each customer, then the ***...*** field should be accurate and reflect the average of all ***...*** values for each `***...***.
-  - [ ] Given the cleaned data, when filtering for active customers, then only customers with ***...*** set to ***...*** should be included.
+  - [ ] Given the cleaned data, when the customer demographics dataset (CSV) and transaction dataset (database) are merged, then the merge should be performed correctly using the `customer_id` field as the key.
+  - [ ] Given the cleaned data, when calculating the total amount spent by each customer, then the `total_spent` field should be accurate and reflect the sum of all `amount` values for each `customer_id`.
+  - [ ] Given the cleaned data, when calculating the average transaction value for each customer, then the `avg_transaction_value` field should be accurate and reflect the average of all `amount` values for each `customer_id`.
+  - [ ] Given the cleaned data, when filtering for active customers, then only customers with `is_active` set to `True` should be included.
 - **Data Loading**
-  - [ ] Given the transformed data, when the data is loaded into the target SQL database, then it should complete in less than ***...*** seconds per ***...*** rows.
+  - [ ] Given the transformed data, when the data is loaded into the target SQL database, then it should complete in less than 5 seconds per 10,000 rows.
   - [ ] Given the transformed data, when the data is loaded into the target SQL database, then the row counts should match expectations.
 - **Data Quality**
   - [ ] Given the final dataset, when data validation is performed, then 99% of records should be accurate.
@@ -390,5 +399,3 @@ So that I can keep my analysis up to date
   - [ ] Given the ETL process, when it is completed, then integration tests should cover interactions between components.
   - [ ] Given the ETL process, when it is completed, then all tests should pass successfully.
   - [ ] Given the ETL process, when it is completed, then test coverage should meet the project's required threshold of 90%.
-
----
